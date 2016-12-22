@@ -16,9 +16,7 @@ function mapStateToProps(state) {
 
 class PreciosListContainer extends Component {
   componentDidMount(){
-    console.log("por aca paso")
-    let { dispatch } = this.props
-    fetchPrecios(dispatch)
+    fetchPrecios()
   }
   render() {
     return <PreciosList {...this.props} />

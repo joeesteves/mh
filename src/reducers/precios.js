@@ -3,10 +3,7 @@ export function precios(state = [], action) {
     case 'FETCH_PRECIOS':
       return state
     case 'RECEIVE_PRECIOS':
-      let newState = action.data.map(row => {
-        return {nombre: row[0], precio: row[1] }
-      })
-      return newState
+      return action.data
     default:
       return state
   }
