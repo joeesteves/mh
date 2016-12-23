@@ -16,12 +16,17 @@ const mapDispachToProps = (dispatch) => ({
   }
 })
 
+let fp
 class PreciosListContainer extends Component {
   componentDidMount(){
     fetchPrecios()
+    fp = setInterval(fetchPrecios, 30000)
   }
   render() {
     return <PreciosList {...this.props} />
+  }
+  componenWillUnmount(){
+    clearInterval(fp)
   }
 }
 

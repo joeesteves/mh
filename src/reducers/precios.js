@@ -1,9 +1,21 @@
+function updatePrecios(state = {}, newState){
+  return { ...newState, hide: state.hide}
+}
+
 export function precios(state = [], action) {
   switch (action.type) {
     case 'FETCH_PRECIOS':
       return state
     case 'RECEIVE_PRECIOS':
-      return action.data
+      if(state.length > 0){
+        return state.map((item,i) => {
+          return updatePrecios(item, action.data[i])
+        })
+      }
+      return action.data.map(item => {
+        item.hide = false
+        return item
+      })
     case 'SEARCH_PRODUCTOS':
       let codigo = action.text.match(/#(\w+)?/)
       let searchKey = "nombre"

@@ -9,17 +9,30 @@ let gapi
 
 
 export function checkAuth() {
-  window.onload = () => {
+  if(!window.gapi){ 
+
+    window.onload = () => {
+      authorize()
+      gapi = window.gapi
+    }
+  } else {
     gapi = window.gapi
-  
-    gapi.auth.authorize({
+    if (!gapi.client.sheets){
+      authorize()
+
+    } else {
+      console.log("getting data from sheets")
+     getDataFromSheets() 
+    }
+  }
+}
+function authorize(){
+  gapi.auth.authorize({
       'client_id': CLIENT_ID,
       'scope': SCOPES.join(' '),
       'immediate': true
     }, handleAuthResult)
-  }
 }
-
 function handleAuthResult(authResult) {
   let authorizeDiv = document.getElementById('authorize-div')
   if (authResult && !authResult.error) {
