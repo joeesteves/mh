@@ -59,16 +59,14 @@ function getDataFromSheets() {
 
 function mapData(rawData){
     return rawData.map(row => {
-        let nombre = row[1]
-        if(!nombre)
-          return false
         return {
-          nombre, 
+          codigo: row[0],
+          nombre: row[1], 
           unidad: row[3],
           precioSinIva: row[6],
           precioEnvio: row[7],
           iva: row[8],
           precioFinal: row[9]
          }
-      }).slice(2)
+      }).filter(row => row.nombre).slice(2)
 }

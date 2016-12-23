@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import PreciosList from '../components/preciosList';
-import { fetchPrecios } from '../actions'
+import { fetchPrecios, searchProductos } from '../actions'
 
 function mapStateToProps(state) {
   return {
@@ -10,9 +10,11 @@ function mapStateToProps(state) {
 }
 
 
-// function mapDispachToProps(dispatch) {
-//   return bindActionCreators(actionCreators, dispatch);
-// }
+const mapDispachToProps = (dispatch) => ({
+  onSearch(text){
+    dispatch(searchProductos(text))
+  }
+})
 
 class PreciosListContainer extends Component {
   componentDidMount(){
@@ -24,4 +26,4 @@ class PreciosListContainer extends Component {
 }
 
 
-export default connect(mapStateToProps, null)(PreciosListContainer);
+export default connect(mapStateToProps, mapDispachToProps)(PreciosListContainer);

@@ -1,0 +1,20 @@
+.preciosTable { 
+    margin: 5px 10% 5px 10%;
+    width: 80%;
+    border-collapse: collapse; 
+}
+.preciosTable th {
+    background: grey;
+    border: 1px solid grey;
+}
+
+.preciosTable th, .preciosTable td:not(.nombre) {
+    text-align: center;
+}
+
+tr:nth-child(even) {background: #CCC}
+tr:nth-child(odd) {background: #FFF}
+
+.hide {
+    display: none;
+}

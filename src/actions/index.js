@@ -10,3 +10,10 @@ export function receivePrecios(data) {
     data
   }
 }
+
+export function searchProductos(text) {
+  return {
+    type: 'SEARCH_PRODUCTOS',
+    text
+  }
+}

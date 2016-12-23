@@ -1,37 +1,56 @@
-import React from 'react'
+import React, {Component} from 'react'
 import loading from '../loading.gif'
-const PreciosList = ({precios}) => {
-  if (precios.length === 0 ){
-    return <img src={loading} alt="loading" />
-  }
-  let columnHeaders = []
+import './components.css'
 
-  for (let key in precios[0]) {
-    if (precios[0].hasOwnProperty(key)) {
-      columnHeaders.push(key)
-    }
+class PreciosList extends Component {
+  constructor(props){
+    super(props)
   }
-  console.log(precios)
-  return (
-    <table>
-      <thead>
-        <tr>
-        {columnHeaders.map((header,i) => {
-          return <th key={i}>{header}</th>
-        })}
-        </tr>
-      </thead>
-      <tbody>
-      { precios.map((precio, i) => {
-        return <tr key={i}>
-          { columnHeaders.map((header, i) => {
-            return <td key={i}> { precio[header] } </td>
+
+  handleSearch(){
+    this.props.onSearch(this.refs.input.value)
+  }
+
+  render() {
+    let columnHeaders = []
+
+    if (this.props.precios.length === 0 ){
+      <img src={loading} alt="loading" />
+    }
+
+    for (let key in this.props.precios[0]) {
+      if (this.props.precios[0].hasOwnProperty(key)) {
+        if(!["hide"].includes(key))
+          columnHeaders.push(key)
+      }
+    }
+    return (
+      <div>
+      <input type="text" ref="input" onChange={this.handleSearch.bind(this)} />
+      <table className="preciosTable">
+        <thead>
+          <tr>
+          {columnHeaders.map((header,i) => {
+            return <th key={i}>{header.toUpperCase()}</th>
           })}
-        </tr>
-      })}
-      </tbody>
-    </table>
-  )
+          </tr>
+        </thead>
+        <tbody>
+        { this.props.precios.map((precio, i) => {
+          if(precio.hide)
+            return 
+          return <tr key={i} className={precio.hide? 'hide': ''}>
+            { columnHeaders.map((header, i) => {
+              return <td key={i} className={header}> { precio[header] } </td>
+            })}
+          </tr>
+        })}
+        </tbody>
+      </table>
+      </div>
+    )
+  }
+
 }
 
 
