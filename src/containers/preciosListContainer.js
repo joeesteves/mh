@@ -20,7 +20,7 @@ let fp
 class PreciosListContainer extends Component {
   componentDidMount(){
     fetchPrecios()
-    fp = setInterval(fetchPrecios, 30000)
+    fp = setInterval(fetchPrecios, 3000)
   }
   render() {
     return <PreciosList {...this.props} />

@@ -13,7 +13,6 @@ class PreciosList extends Component {
 
   render() {
     let columnHeaders = []
-
     if (this.props.precios.length === 0 ){
       <img src={loading} alt="loading" />
     }

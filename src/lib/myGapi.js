@@ -9,17 +9,15 @@ let gapi
 
 
 export function checkAuth() {
-  if(!window.gapi){ 
-
+  if(!window.gapi.auth){ 
     window.onload = () => {
-      authorize()
       gapi = window.gapi
+      authorize()
     }
   } else {
     gapi = window.gapi
     if (!gapi.client.sheets){
       authorize()
-
     } else {
       console.log("getting data from sheets")
      getDataFromSheets() 
