@@ -9,7 +9,6 @@ function mapStateToProps(state) {
   }
 }
 
-
 const mapDispachToProps = (dispatch) => ({
   onSearch(text){
     dispatch(searchProductos(text))
@@ -20,7 +19,7 @@ let fp
 class PreciosListContainer extends Component {
   componentDidMount(){
     fetchPrecios()
-    fp = setInterval(fetchPrecios, 3000)
+    fp = setInterval(fetchPrecios, 60000)
   }
   render() {
     return <PreciosList {...this.props} />

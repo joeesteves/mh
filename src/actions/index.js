@@ -17,3 +17,9 @@ export function searchProductos(text) {
     text
   }
 }
+
+export function toggleLoader() {
+  return {
+    type: 'TOGGLE_LOADER'
+  }
+}

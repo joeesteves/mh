@@ -1,6 +1,10 @@
 import React from 'react'
 import PreciosListContainers from './preciosListContainer'
+import Loader from '../containers/entornoContainer'
 
 export default () => (
-  <PreciosListContainers />
+  <div>
+    <PreciosListContainers />
+    <Loader />
+  </div>
 )

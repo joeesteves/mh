@@ -1,5 +1,5 @@
 import store from '../store'
-import {receivePrecios} from '../actions'
+import {receivePrecios, toggleLoader} from '../actions'
 
 const CLIENT_ID = '238916020447-f9aqrt7tpdbfq6r6d4kd5kvd0gfvbgek.apps.googleusercontent.com'
 const SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
@@ -65,6 +65,7 @@ function getDataFromSheets() {
     .then((response) => {
       let range = response.result
       store.dispatch(receivePrecios(mapData(range.values)))
+      store.dispatch(toggleLoader())
     }, (response) => alert('error'))
 }
 

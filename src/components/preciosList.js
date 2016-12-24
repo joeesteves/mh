@@ -24,7 +24,7 @@ class PreciosList extends Component {
       }
     }
     return (
-      <div>
+      <div className="searchBar">
       <input type="text" ref="input" onChange={this.handleSearch.bind(this)} />
       <table className="preciosTable">
         <thead>
